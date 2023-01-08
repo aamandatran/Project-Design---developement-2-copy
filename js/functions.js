@@ -27,9 +27,6 @@ function add_group_toggling(filter_container_dom) { }
 function toggle_cities(event) { }
 
 
-// WRITE SPECIFICATION
-// ATTENTION: You need to write the specification of all three functions:
-//            create_countries_cities_filters, create_country and create_city
 function create_countries_cities_filters() {
   /*
       NO ARGUMENTS
@@ -80,16 +77,16 @@ function create_countries_cities_filters() {
   }
   function create_city(city) {
     /*
-ARGUMENTS
-  city: object 
+      ARGUMENTS
+        city: object 
 
-SIDE EFFECTS
- This function uses another function called create_filter_element to create a new DOM element for a city with specified parent element, class and textContent.
+      SIDE EFFECTS
+        This function uses another function called create_filter_element to create a new DOM element for a city with specified parent element, class and textContent.
 
- The dataset.id property of the element is set to the id property of the city object.
+        The dataset.id property of the element is set to the id property of the city object.
 
-NO RETURN VALUE
-*/
+      NO RETURN VALUE
+    */
 
     const dom = create_filter_element({
       parent: document.querySelector(`#country_${city.countryID} > ul`),
@@ -235,14 +232,19 @@ function update_programmes() {
 }
 
 
-// G
-// WRITE SPECIFICATION
-// You must understand how this function works. There will be questions about it
-// in the code review (kodredovisning)
-
-// Optional VG: Which parts of the function's code could be abstracted?
-//              Implement it
 function read_filters() {
+  /*
+   NO ARGUMENTS
+
+   SIDE-EFFECTS
+     This function filters a list of programs based on city, university, level, language, subject and search_string according to which filter elements are selected and extracts their IDs as integers.
+     
+     It uses array_filter to remove programs that do not match the selected criteria, ID, or those that do not include the search_string value in their name.
+
+    
+   RETURN VALUE
+     Returns the reference to a new array called programmes with programmes that matches the criteria.
+ */
 
   const city_selected_dom = document.querySelectorAll("#country_filter li.selected");
 
