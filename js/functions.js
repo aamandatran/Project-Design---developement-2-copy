@@ -1,33 +1,13 @@
 
-// G
-// CODE According to specification
 function click_filter_element(event) {
   filter_dom = event.currentTarget;
   filter_dom.classList.toggle("selected");
 
   update_programmes()
 
-  /*
-    ARGUMENTS
-      event: event-object created when user clicks on one of the filter elements.
-
-    SIDE-EFFECTS
-      Marks the clicked filter element as selected / unselected.
-      Since a filter element will have changed after the click, the list of
-      programmes must be updated.
-
-      Attention VG
-        Careful with the propagation of the click-event
-
-    NO RETURN VALUE
-
-  */
-
 }
 
 
-// G
-// CODE according to specification
 function create_filter_element(data) {
   const new_dom = document.createElement("li");
   new_dom.classList.add(data.class);
@@ -38,71 +18,13 @@ function create_filter_element(data) {
 
   return new_dom;
 
-
-  /*
-    ARGUMENTS
-      data: object that contains the following keys:
-        class (string): a class-name given to the created element
-        textContent (string): the text that the element contains
-        parent (reference to HTML-element): the HTML-element that is the parent of the created element
-
-      No control of arguments.
-
-    SIDE-EFFECTS
-      Creates a new dom-element with the tag "li".
-      Gives the new dom-element the class contained in data.class
-      Appends the new dom-element to the element referenced in data.parent
-      Sets the text content of the new dom-element to data.textContent
-      Sets the function click_filter_element as a listener to "click" for the new dom-element
-
-    RETURN VALUE
-      Returns a reference to the new dom-element
-  */
-
 }
 
 
-// VG
-// CODE according to specification
-function add_group_toggling(filter_container_dom) {
-
-  /*
-    ARGUMENT
-      filter_container_dom: reference to a HTML-element that contains a set of fliter_elements
-            Exempel: the <ul> that contains the filters for Language.
-
-    SIDE EFFECTS
-      The function makes sure that when the user clicks on filter_container_dom, all the
-      filter_elements that it contains are selected / unselected.
-      Since some filter elements will have changed after the click, the list of
-      programmes must be updated.
-
-    NO RETURN VALUE
-
-  */
-
-}
+function add_group_toggling(filter_container_dom) { }
 
 
-// VG
-// CODE according to specifications
-function toggle_cities(event) {
-
-  /*
-
-    ARGUMENTS
-      This function does not take any arguments
-
-    SIDE EFFECTS
-      This function checks the state of the first city-filter-element (Madrid).
-      If it is selected then it de-selects ALL city-filter-elements
-      If it is de-selected then it selects ALL city-filter-elements 
-
-    NO RETURN VALUE
-
-  */
-
-}
+function toggle_cities(event) { }
 
 
 // WRITE SPECIFICATION
@@ -143,10 +65,6 @@ function create_countries_cities_filters() {
 }
 
 
-// G
-// ABSTRACT AND WRITE SPECIFICATION
-//    As you can see, all three functions below do basically the same thing.
-//    Abstract them to one function, and write the specification of that function.
 function create_filters(parentSelector, array) {
   /*
       ARGUMENTS
@@ -176,8 +94,6 @@ function create_filters(parentSelector, array) {
 }
 
 
-// G / VG (see details in specification)
-// CODE according to specifications
 function create_programme(programme) {
   const dom = document.createElement("div");
   dom.classList.add("programme");
@@ -265,58 +181,18 @@ function create_programme(programme) {
     temp.textContent = `${level.name}, ${subject.name}, ${language.name} `;
     document.querySelector(`#programme_${programme.id} #top_info`).append(temp);
   }
-
-  /*
-
-    ARGUMENT
-      programme (object): One of the objects from PROGRAMMES
-
-    SIDE-EFFECTS
-      This function creates the HTML-element that contains all the information
-      about one programme, as seen in the video / image.
-      
-      VG: The background image is a random image from among the images of the city
-          in which the programme is (via the university)
-      G:  No background image required.
-
-
-      VG: The "see more" interaction must be included.
-      G:  The "see more" element is not required. And that information needs not be in place.
-
-    NO RETURN VALUE
-
-  */
-
 }
 
 
-// G
-// CODE according to the specification
+
 function update_programmes() {
   document.querySelector("#programmes > ul").innerHTML = "";
 
-  // WRITE LIST OF USERS
   if (programmes.length === 0) {
     document.querySelector("#programmes > ul").textContent = "";
   } else {
     array_each(read_filters(programmes), create_programme);
   }
-
-
-  /*
-      NO ARGUMENTS
-
-      SIDE EFFECTS
-        This function updates the programmes shown on the page according to
-        the current filter status (which filter elements are selected / unselected).
-        It uses the function read_filters to know which programmes need to be included.
-
-        VG: The top images (header) need to be updated here
-
-      NO RETURN VALUE
-
-  */
-
 }
 
 
