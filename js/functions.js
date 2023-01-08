@@ -29,6 +29,15 @@ function click_filter_element(event) {
 // G
 // CODE according to specification
 function create_filter_element(data) {
+  const new_dom = document.createElement("li");
+  new_dom.classList.add(data.class);
+  data.parent.append(new_dom);
+  new_dom.textContent = `${data.textContent}`;
+
+  new_dom.addEventListener("click", click_filter_element);
+
+  return new_dom;
+
 
   /*
     ARGUMENTS
