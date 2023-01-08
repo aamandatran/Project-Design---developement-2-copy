@@ -31,7 +31,35 @@ function toggle_cities(event) { }
 // ATTENTION: You need to write the specification of all three functions:
 //            create_countries_cities_filters, create_country and create_city
 function create_countries_cities_filters() {
+  /*
+      NO ARGUMENTS
+  
+      SIDE EFFECTS
+       This function creates an HTML element for each country and city using two different arrays, CITIES and COUNTRIES. 
+       Uses array_each to call the functions create_country and create_city for each element in array, with the element as argument.
+  
+      NO RETURN VALUE
+    */
+
   function create_country(country) {
+    /*
+     ARGUMENTS
+       country: object
+ 
+     SIDE EFFECTS
+      Creates a new dom-element with the tag "div"
+      Gives the new dom-element classes "country" and "filter_container"
+      Gives the new dom-element the id "country_" + country.id
+      Appends the new dom-element to the element referenced as "document.querySelector("#country_filter > ul")"
+      Sets the innerHTML of the element to include an h1 element with the name of the country and an unordered list (ul) element with the class "filter_list".
+ 
+      Uses the function array_filter to filter through the array, CITIES, and find cities with the same ID as the country object.
+      
+      Uses array_each to call the function, create_city, on each of the cities in the filtered array. 
+ 
+     NO RETURN VALUE
+   */
+
     const dom = document.createElement("div");
     dom.classList.add("country");
     dom.classList.add("filter_container");
@@ -51,6 +79,17 @@ function create_countries_cities_filters() {
     array_each(cities, create_city);
   }
   function create_city(city) {
+    /*
+ARGUMENTS
+  city: object 
+
+SIDE EFFECTS
+ This function uses another function called create_filter_element to create a new DOM element for a city with specified parent element, class and textContent.
+
+ The dataset.id property of the element is set to the id property of the city object.
+
+NO RETURN VALUE
+*/
 
     const dom = create_filter_element({
       parent: document.querySelector(`#country_${city.countryID} > ul`),
