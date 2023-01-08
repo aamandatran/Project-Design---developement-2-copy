@@ -147,40 +147,32 @@ function create_countries_cities_filters() {
 // ABSTRACT AND WRITE SPECIFICATION
 //    As you can see, all three functions below do basically the same thing.
 //    Abstract them to one function, and write the specification of that function.
-function create_levels_filter() {
-  function create_level(level) {
+function create_filters(parentSelector, array) {
+  /*
+      ARGUMENTS
+        parentSelector: the parent reference to the HTML element where the created filter will be positioned.
+        array: an array of objects, it could be either LEVELS, SUBJECTS or LANGUAGES from data.js and it depends on what filter you want to create.
+  
+      SIDE EFFECTS
+        This function creates a new dom-element with class "selected" using the function create_filter_element.
+
+        Uses array_each to call the function, create_filter, on each of the objects in the array. 
+
+        The dataset.id property of the element is set to the id property of the city object.
+  
+      NO RETURN VALUE
+    */
+
+  function create_filter(object) {
     const dom = create_filter_element({
-      parent: document.querySelector("#level_filter > ul"),
+      parent: document.querySelector(parentSelector),
       class: "selected",
-      textContent: level.name,
+      textContent: object.name,
     });
-    dom.dataset.id = level.id;
+    dom.dataset.id = object.id;
   }
-  array_each(LEVELS, create_level);
-}
-// Create Subjects Filter
-function create_subjects_filter() {
-  function create_subject(subject) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#subject_filter > ul"),
-      class: "selected",
-      textContent: subject.name,
-    });
-    dom.dataset.id = subject.id;
-  }
-  array_each(SUBJECTS, create_subject);
-}
-// Create Search Field
-function create_language_filter() {
-  function create_element(data) {
-    const dom = create_filter_element({
-      parent: document.querySelector("#language_filter > ul"),
-      class: "selected",
-      textContent: data.name,
-    });
-    dom.dataset.id = data.id;
-  }
-  array_each(LANGUAGES, create_element);
+
+  array_each(array, create_filter);
 }
 
 
