@@ -301,12 +301,14 @@ function create_programme(programme) {
 // G
 // CODE according to the specification
 function update_programmes() {
-  document.querySelector("#programmes > ul").innerHTML = "";
-
-  // WRITE LIST OF USERS
-  if (programmes.length === 0) {
-    document.querySelector("#programmes > ul").textContent = "";
+  const programmes_selected = read_filters();
+  const text = document.querySelector("#programmes > p");
+  const list = document.querySelector("#programmes > ul");
+  list.innerHTML = "";
+  if (programmes_selected.length === 0) {
+    text.innerHTML = "Inga program upfyller nuvarande filter.";
   } else {
+    text.innerHTML = "";
     array_each(read_filters(programmes), create_programme);
   }
 
