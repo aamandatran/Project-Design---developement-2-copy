@@ -301,6 +301,15 @@ function create_programme(programme) {
 // G
 // CODE according to the specification
 function update_programmes() {
+  document.querySelector("#programmes > ul").innerHTML = "";
+
+  // WRITE LIST OF USERS
+  if (programmes.length === 0) {
+    document.querySelector("#programmes > ul").textContent = "";
+  } else {
+    array_each(read_filters(programmes), create_programme);
+  }
+
 
   /*
       NO ARGUMENTS
