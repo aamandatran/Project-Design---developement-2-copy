@@ -187,6 +187,92 @@ function create_language_filter() {
 // G / VG (see details in specification)
 // CODE according to specifications
 function create_programme(programme) {
+  const dom = document.createElement("div");
+  dom.classList.add("programme");
+  dom.classList.add("selected");
+  dom.id = "programme_" + programme.id;
+  document.querySelector("#programmes > ul").append(dom);
+
+  dom.innerHTML = `
+  <div class="programme" id="top_info">
+    <h1>${programme.name}</h1>
+  </div>
+
+  <div class="programme" id="bottom_info"></div>
+  `;
+
+  const university = array_find(UNIVERSITIES, test_function_1);
+  function test_function_1(university) {
+    if (programme.universityID === university.id) {
+      return university.name;
+    }
+  }
+
+  add_university(university);
+
+  function add_university() {
+    const temp = document.createElement("p");
+    temp.classList.add("university");
+    temp.textContent = `${university.name}`;
+    document.querySelector(`#programme_${programme.id} #top_info`).append(temp);
+  }
+
+  const city = array_find(CITIES, test_function_2);
+  function test_function_2(city) {
+    if (university.cityID === city.id) {
+      return city.name;
+    }
+  }
+  const country = array_find(COUNTRIES, test_function_3);
+  function test_function_3(country) {
+    if (city.countryID === country.id) {
+      return country.name;
+    }
+  }
+
+  add_city(city, country);
+
+  function add_city() {
+    const temp = document.createElement("p");
+    temp.classList.add("city");
+    temp.textContent = `${city.name}, ${country.name} `;
+    document.querySelector(`#programme_${programme.id} #top_info`).append(temp);
+
+
+    const temp2 = document.createElement("p");
+    temp2.classList.add("sun");
+    temp2.textContent = `${city.name}, sun-index: ${city.sun} `;
+    document.querySelector(`#programme_${programme.id} #bottom_info`).append(temp2);
+  }
+
+  const level = array_find(LEVELS, test_function_4);
+  function test_function_4(level) {
+    if (programme.levelID === level.id) {
+      return level.name;
+    }
+  }
+  const subject = array_find(SUBJECTS, test_function_5);
+  function test_function_5(subject) {
+    if (programme.subjectID === subject.id) {
+      return subject.name;
+    }
+  }
+
+  const language = array_find(LANGUAGES, test_function_6);
+  function test_function_6(language) {
+    if (programme.languageID === language.id) {
+      return language.name;
+    }
+  }
+
+  add_level_subject_language(level, subject, language);
+
+  function add_level_subject_language() {
+    const temp = document.createElement("p");
+    temp.classList.add("level_subject_language");
+    temp.textContent = `${level.name}, ${subject.name}, ${language.name} `;
+    document.querySelector(`#programme_${programme.id} #top_info`).append(temp);
+  }
 
   /*
 
